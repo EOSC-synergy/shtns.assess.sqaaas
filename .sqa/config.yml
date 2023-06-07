@@ -1,0 +1,62 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: release/1.7.11
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    gricad-gitlab.univ-grenoble-alpes.fr/schaeffn/shtns:
+      branch: master
+      repo: https://gricad-gitlab.univ-grenoble-alpes.fr/schaeffn/shtns
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      gricad-gitlab.univ-grenoble-alpes.fr/schaeffn/shtns git:
+        commands:
+        - /usr/bin/env sh .sqa/script.gimpy-brass-akbash.sh
+        container: qc.acc_trippy-denim-mayfly
+  QC.Doc:
+    repos:
+      gricad-gitlab.univ-grenoble-alpes.fr/schaeffn/shtns find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.homely-beige-numbat.sh
+        container: qc.doc_gloppy-charcoal-urchin
+      gricad-gitlab.univ-grenoble-alpes.fr/schaeffn/shtns git:
+        commands:
+        - /usr/bin/env sh .sqa/script.goopy-plum-hornet.sh
+        container: qc.doc_nippy-celadon-greyhound
+      gricad-gitlab.univ-grenoble-alpes.fr/schaeffn/shtns markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.blurry-olive-caiman.sh
+        container: qc.doc_flabby-linen-greyhound
+  QC.Lic:
+    repos:
+      gricad-gitlab.univ-grenoble-alpes.fr/schaeffn/shtns licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.paltry-mauve-meerkat.sh
+        container: qc.lic_squirrely-zucchini-turtle
+  QC.Sec:
+    repos:
+      gricad-gitlab.univ-grenoble-alpes.fr/schaeffn/shtns bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.chummy-celadon-akbash.sh
+        container: qc.sec_jumpy-pear-urchin
+  QC.Sty:
+    repos:
+      gricad-gitlab.univ-grenoble-alpes.fr/schaeffn/shtns checkstyle:
+        commands:
+        - /usr/bin/env sh .sqa/script.crappy-black-dane.sh
+        container: qc.sty_breezy-rust-chihuahua
+      gricad-gitlab.univ-grenoble-alpes.fr/schaeffn/shtns flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.seedy-bistre-wildebeest.sh
+        container: qc.sty_lovely-khaki-bullfrog
+  QC.Ver:
+    repos:
+      gricad-gitlab.univ-grenoble-alpes.fr/schaeffn/shtns get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.randy-vermilion-liger.sh
+        container: qc.ver_sickly-gold-spoonbill
+timeout: 5400
